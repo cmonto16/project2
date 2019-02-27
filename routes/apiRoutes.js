@@ -21,6 +21,7 @@ module.exports = function(app) {
   app.delete("/api/Post/:id", function(req, res) {
     db.Post.destroy({ where: { id: req.params.id } }).then(function(kidsthesedays) {
       res.json(kidsthesedays);
+
     });
   });
 };

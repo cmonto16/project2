@@ -15,6 +15,7 @@ module.exports = function(app) {
     db.Post.findOne({ where: { id: req.params.id } }).then(function(kidsthesedays) {
       res.render("Post", {
         Post: "kidsthesedays"
+
       });
     });
   });

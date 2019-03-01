@@ -1,7 +1,7 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
+
   app.get("/", function(req, res) {
     /*var query = {};
     if (req.query.User_id) {
@@ -10,22 +10,28 @@ module.exports = function(app) {
     db.Post.findAll({
       where: { userId: 1 }
     }).then(function(data) {
-      
-      console.log(data[0]);
-      res.render("index", { title: data[0].title, body: data[0].body });
+
     });
   });
 
-  app.get("/editor", function(req, res) {
-    db.Post.findOne({ where: { id: req.params.id } }).then(function(data) {
-      res.render("editor", {});
-    });
+
+  app.get("/profile", function(req, res) {
+    if (!req.session.user) {
+      db.User.findOne({
+        where: {
+          id: 2
+        },
+        include: [db.Post]
+      }).then(function(dbUser) {
+        res.render("profile", {
+          user: dbUser
+        });
+      });
+    }
   });
 
-  app.get("/create-account", function(req, res) {
-    db.Post.findOne({ where: { id: req.params.id } }).then(function(data) {
-      res.render("create", {});
-    });
+  app.get("/posts", function(req, res) {
+      res.render("posts");
   });
 
   // Render 404 page for any unmatched routes

@@ -30,4 +30,8 @@ module.exports = function(app) {
       res.json(dbPost);
     });
   });
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> master

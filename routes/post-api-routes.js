@@ -5,15 +5,7 @@ module.exports = function(app) {
 
 
   app.get("/api/posts", function(req, res) {
-    var query = {};
-    if (req.query.User_id) {
-      query.UserId = req.query.User_id;
-    }
-
-    db.Post.findAll({
-      where: query,
-      include: [db.User, group]
-    }).then(function(dbPost) {
+    db.Post.findAll({}).then(function(dbPost) {
       res.json(dbPost);
     });
   });
@@ -27,6 +19,14 @@ module.exports = function(app) {
       },
       include: [db.User]
     }).then(function(dbPost) {
-      res.json(dbPost);
-    });
+      res.json(dbPost)
+    })
+  })
+
+
+app.post("/api/posts", function(req, res) {
+  db.Post.create(req.body).then(function(dbExample) {
+    res.json(dbExample);
   });
+});
+}

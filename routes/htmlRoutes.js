@@ -1,6 +1,20 @@
 var db = require("../models");
 
 module.exports = function(app) {
+
+  app.get("/", function(req, res) {
+    /*var query = {};
+    if (req.query.User_id) {
+      query.UserId = req.query.User_id;
+    }*/
+    db.Post.findAll({
+      where: { userId: 1 }
+    }).then(function(data) {
+
+    });
+  });
+
+
   app.get("/profile", function(req, res) {
     if (!req.session.user) {
       db.User.findOne({

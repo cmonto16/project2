@@ -2,6 +2,7 @@
     <div class="input-field col s12">
         <input id="username" type="text" class="validate" value="{{user.username}}">
         <label for="username">Username</label>
+
     </div>
 </div>
 <div class="row">
@@ -12,7 +13,7 @@
 </div>
 
 <button id="login-button" class="btn waves-effect waves-light">Login</button>
-<br/>
+<br />
 
 <div class="row">
     <div class="input-field col s6">
@@ -20,7 +21,7 @@
         <label for="new_firstname">First Name</label>
     </div>
     <div class="input-field col s6">
-        <input id="new_lastname" type="text" class="validate"  value="{{user.lastname}}">
+        <input id="new_lastname" type="text" class="validate" value="{{user.lastname}}">
         <label for="new_lastname">Last Name</label>
     </div>
 </div>
@@ -42,8 +43,9 @@
         <label for="new_email">Email</label>
     </div>
 </div>
-
 <button id="new-button" class="btn waves-effect waves-light">Submit</button>
-
-
+<div class="row">
+    <h4>Or Login with Google</h4>
+    <button id="btn-login" class="btn waves-effect waves-light">Google-Login</button>
+</div>
 <script src="/js/index.js"></script>

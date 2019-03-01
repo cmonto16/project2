@@ -3,20 +3,28 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Post.findAll({}).then(function(kidsthesedays) {
-      res.render("index", {
-        activity: "kidsthesedays"
-      });
+    /*var query = {};
+    if (req.query.User_id) {
+      query.UserId = req.query.User_id;
+    }*/
+    db.Post.findAll({
+      where: { userId: 1 }
+    }).then(function(data) {
+      
+      console.log(data[0]);
+      res.render("index", { title: data[0].title, body: data[0].body });
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/Post/:id", function(req, res) {
-    db.Post.findOne({ where: { id: req.params.id } }).then(function(kidsthesedays) {
-      res.render("Post", {
-        Post: "kidsthesedays"
+  app.get("/editor", function(req, res) {
+    db.Post.findOne({ where: { id: req.params.id } }).then(function(data) {
+      res.render("editor", {});
+    });
+  });
 
-      });
+  app.get("/create-account", function(req, res) {
+    db.Post.findOne({ where: { id: req.params.id } }).then(function(data) {
+      res.render("create", {});
     });
   });
 

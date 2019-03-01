@@ -1,26 +1,39 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  // Get all
+  app.get("/api/Post", function(req, res) {
+    var query = {};
+    if (req.query.User_id) {
+      query.UserId = req.query.User_id;
+    }
+    db.Post.findAll({
+      where: query,
+      include: [db.User, db.group]
+    }).then(function(dbPost) {
+      res.json(dbPost);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  // Create new
+  app.post("/api/new", function(req, res) {
+    console.log(req.body);
+    db.Post.create(req.body).then(function(newPost) {
+      res.json(newPost);
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
+  app.post("/api/create-account", function(req, res) {
+    console.log(req.body);
+    db.User.create(req.body).then(function(newUser) {
+      res.json(newUser);
+    });
+  });
+
+  // Delete by id
+  app.delete("/api/Post/:id", function(req, res) {
+    db.Post.destroy({ where: { id: req.params.id } }).then(function(data) {
+      res.json(data);
     });
   });
 };

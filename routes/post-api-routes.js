@@ -1,9 +1,6 @@
 var db = require("../models");
 
-
 module.exports = function(app) {
-
-
   app.get("/api/posts", function(req, res) {
     var query = {};
     if (req.query.User_id) {
@@ -18,9 +15,7 @@ module.exports = function(app) {
     });
   });
 
-
   app.get("/api/posts/:id", function(req, res) {
-
     db.Post.findOne({
       where: {
         id: req.params.id
@@ -30,8 +25,4 @@ module.exports = function(app) {
       res.json(dbPost);
     });
   });
-<<<<<<< HEAD
-}
-=======
 };
->>>>>>> master

@@ -1,28 +1,8 @@
-<<<<<<< HEAD
-<div id="home">
-  <div class="row">
-    {{data}}
-    <div class="col s4">
-      <div class="card medium">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="https://www.hoglezoo.org/wp-content/uploads/2012/11/MeetAnimals.jpg">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Card Title<i
-              class="material-icons right">more_vert</i></span>
-          <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-      </div>
-=======
 <div class="row">
     <div class="input-field col s12">
         <input id="username" type="text" class="validate" value="{{user.username}}">
         <label for="username">Username</label>
->>>>>>> master
+
     </div>
 </div>
 <div class="row">
@@ -33,7 +13,7 @@
 </div>
 
 <button id="login-button" class="btn waves-effect waves-light">Login</button>
-<br/>
+<br />
 
 <div class="row">
     <div class="input-field col s6">
@@ -41,7 +21,7 @@
         <label for="new_firstname">First Name</label>
     </div>
     <div class="input-field col s6">
-        <input id="new_lastname" type="text" class="validate"  value="{{user.lastname}}">
+        <input id="new_lastname" type="text" class="validate" value="{{user.lastname}}">
         <label for="new_lastname">Last Name</label>
     </div>
 </div>
@@ -63,8 +43,9 @@
         <label for="new_email">Email</label>
     </div>
 </div>
-
 <button id="new-button" class="btn waves-effect waves-light">Submit</button>
-
-
+<div class="row">
+    <h4>Or Login with Google</h4>
+    <button id="btn-login" class="btn waves-effect waves-light">Google-Login</button>
+</div>
 <script src="/js/index.js"></script>

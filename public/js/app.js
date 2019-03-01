@@ -5,7 +5,7 @@ window.addEventListener('load', function() {
 
   var webAuth = new auth0.WebAuth({
     domain: 'tommullen.auth0.com',
-    clientID: 'vHs8Vn84og1GvLafxYwmg34dpUEc0x1w',
+    clientID: 'gMpCbQ05redfJaE8CC9p0lbJ31fH5N31',
     responseType: 'token id_token',
     scope: 'openid',
     redirectUri: window.location.href
@@ -80,3 +80,20 @@ window.addEventListener('load', function() {
   }
 
 });
+
+// node stuff
+var session = require('express-session');
+
+// config express-session
+var sess = {
+  secret: 'CHANGE THIS TO A RANDOM SECRET',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true
+};
+
+if (app.get('env') === 'production') {
+  sess.cookie.secure = true; // serve secure cookies, requires https
+}
+
+app.use(session(sess));

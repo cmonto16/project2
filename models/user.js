@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
         firstname: {
             allowNull: false,
             type: DataTypes.STRING,
-            unique: true,
             validate: {
                 notEmpty: true
             }
@@ -11,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
         lastname: {
             allowNull: false,
             type: DataTypes.STRING,
-            unique: true,
             validate: {
                 notEmpty: true
             }

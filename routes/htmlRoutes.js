@@ -3,26 +3,21 @@ var db = require("../models");
 module.exports = function(app) {
 
   app.get("/", function(req, res) {
-    /*var query = {};
-    if (req.query.User_id) {
-      query.UserId = req.query.User_id;
-    }*/
-    db.Post.findAll({
-      where: { userId: 1 }
-    }).then(function(data) {
-
-    });
+    res.render("index")
   });
 
 
   app.get("/profile", function(req, res) {
+    res.render("profile")
     if (!req.session.user) {
+      console.log(db.Post)
       db.User.findOne({
         where: {
-          id: 2
+          id: req.session.user.id
         },
         include: [db.Post]
       }).then(function(dbUser) {
+        console.log(dbUser)
         res.render("profile", {
           user: dbUser
         });
@@ -32,6 +27,11 @@ module.exports = function(app) {
 
   app.get("/posts", function(req, res) {
       res.render("posts");
+      db.Post.findAll({
+        attributes: ['id', 'title', 'UserID']
+      }).then(function (dbPost) {
+        console.log(dbPost)
+      });
   });
 
   app.get("/newpost", function(req, res) {

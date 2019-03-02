@@ -1,4 +1,3 @@
-
 window.addEventListener('load', function() {
   var idToken;
   var expiresAt;
@@ -19,4 +18,3 @@ window.addEventListener('load', function() {
   });
 
 });
-

@@ -16,17 +16,21 @@ module.exports = function(app) {
 
 
   app.get("/profile", function(req, res) {
-    if (!req.session.user) {
+    if (req.session && req.session.user) {
       db.User.findOne({
         where: {
-          id: 2
-        },
-        include: [db.Post]
+          id: req.session.user.id
+        }
       }).then(function(dbUser) {
+        if (!dbUser) {
+          res.redirect("/");
+        }
         res.render("profile", {
           user: dbUser
         });
       });
+    } else {
+      res.redirect("/");
     }
   });
 

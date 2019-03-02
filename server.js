@@ -44,7 +44,9 @@ app.use(function(req, res, next) {
 });
 
 // Routes
-require("./routes/user-api-routes")(app);
+require("./routes/apiRoutes")(app);
+require("./routes/postApiRoutes")(app);
+require("./routes/categoryApiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 var syncOptions = { force: false };

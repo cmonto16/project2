@@ -1,3 +1,22 @@
+<!-- Modal Structure -->
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <h4>Save Successful</h4>
+        <p>Congratulations, you just updated your profile. YAY!</p>
+    </div>
+    <div class="modal-footer">
+        <a href="/profile" class="modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
+<div id="failedModal" class="modal">
+    <div class="modal-content">
+        <h4>Update failed</h4>
+        <p>Profile update failed. Try again later.</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
 
 <div class="row">
     <div class="input-field col s6">
@@ -5,7 +24,7 @@
         <label for="first_name">First Name</label>
     </div>
     <div class="input-field col s6">
-        <input id="lastname" type="text" class="validate"  value="{{user.lastname}}">
+        <input id="lastname" type="text" class="validate" value="{{user.lastname}}">
         <label for="last_name">Last Name</label>
     </div>
 </div>
@@ -29,4 +48,6 @@
 </div>
 
 <button id="update-button" class="btn waves-effect waves-light">Update</button>
+<br/>
+<br/>
 <script src="/js/profile.js"></script>

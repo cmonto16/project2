@@ -1,5 +1,7 @@
 console.log("loaded profile.js");
 
+M.Modal.init($(".modal"));
+
 $("#update-button").on("click", function(event) {
     console.log("clicked update");
 
@@ -17,10 +19,11 @@ $("#update-button").on("click", function(event) {
         contentType: "application/json"
       })
         .done(function() {
-          location.href = "/profile";
+          M.Modal.getInstance($("#successModal")).open();
+          
         })
         .fail(function(jqXHR, textStatus) {
-          alert("error: " + textStatus);
+          M.Modal.getInstance($("#failedModal")).open();
         });
     });
 

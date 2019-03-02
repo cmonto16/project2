@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
-    var GroupUser = sequelize.define("GroupUser", {
+    var CategoryPost = sequelize.define("CategoryPost", {
         postId: DataTypes.INTEGER,
         categoryId: DataTypes.INTEGER
     });
-    return GroupUser;
+    return CategoryPost;
 };

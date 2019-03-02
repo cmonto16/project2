@@ -23,6 +23,12 @@ module.exports = function(app) {
       res.redirect('/');
     });
   });
+  
+  app.get("/api/sessions_login", function(req, res) {
+    req.session.destroy(function(err) {
+      res.redirect('/');
+    });
+  });
 
   app.delete("/api/sessions", function(req, res) {
     req.session.destroy(function(err) {

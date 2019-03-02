@@ -32,7 +32,7 @@ app.use(express.json());
 
 require("./routes/session-api-routes")(app);
 app.get("/", function(req, res) {
-  res.render("index");
+  res.render("posts");
 });
 
 app.use(function(req, res, next) {

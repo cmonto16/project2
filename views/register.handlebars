@@ -1,20 +1,21 @@
-<div class="row">
-    <div class="input-field col s12">
-        <input id="username" type="text" class="validate" value="{{user.username}}">
-        <label for="username">Username</label>
-
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <h4>Save Successful</h4>
+        <p>Congratulations, you just updated your profile. YAY!</p>
+    </div>
+    <div class="modal-footer">
+        <a href="/" class="modal-close waves-effect waves-green btn-flat">OK</a>
     </div>
 </div>
-<div class="row">
-    <div class="input-field col s12">
-        <input id="password" type="password" class="validate">
-        <label for="password">Password</label>
+<div id="failedModal" class="modal">
+    <div class="modal-content">
+        <h4>Update failed</h4>
+        <p>Profile update failed. Try again later.</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
     </div>
 </div>
-
-<button id="login-button" class="btn waves-effect waves-light">Login</button>
-<br />
-
 <div class="row">
     <div class="input-field col s6">
         <input id="new_firstname" type="text" class="validate" value="{{user.firstname}}">
@@ -43,9 +44,9 @@
         <label for="new_email">Email</label>
     </div>
 </div>
+
 <button id="new-button" class="btn waves-effect waves-light">Submit</button>
-<div class="row">
-    <h4>Or Login with Google</h4>
-    <button id="btn-login" class="btn waves-effect waves-light">Google-Login</button>
-</div>
-<script src="/js/index.js"></script>
+<a class="waves-effect waves-light btn" href="/">Cancel</a>
+<br>
+<br>
+<script src="/js/register.js"></script>

@@ -30,20 +30,8 @@ app.engine(
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-require("./routes/session-api-routes")(app);
-app.get("/", function(req, res) {
-  res.render("index");
-});
-
-app.use(function(req, res, next) {
-  if (!req.session.user) {
-    console.log("User is not logged in.");
-    return res.redirect('/');
-  }
-  next();
-});
-
 // Routes
+require("./routes/session-api-routes")(app);
 require("./routes/apiRoutes")(app);
 require("./routes/postApiRoutes")(app);
 require("./routes/categoryApiRoutes")(app);

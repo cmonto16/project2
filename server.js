@@ -35,13 +35,13 @@ app.get("/", function(req, res) {
   res.render("posts");
 });
 
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   if (!req.session.user) {
     console.log("User is not logged in.");
     return res.redirect('/');
   }
   next();
-});
+});*/
 
 // Routes
 require("./routes/apiRoutes")(app);

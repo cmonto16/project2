@@ -92,11 +92,22 @@ module.exports = function (app) {
     });
   });
 
-
    // redierect for users to create post
    app.get("/api/create_post", function(req, res){
-     
     res.redirect("/newpost")
   })
- 
+
+  // 
+  app.post("/api/edit_post", function(req, res){
+    var id = req.body.id
+    db.Post.findOne({
+      where: {
+        id: id
+      }
+    }).then(function(postData){
+      res.render("newpost",{
+        data: postData
+      })
+    })
+  })
 };

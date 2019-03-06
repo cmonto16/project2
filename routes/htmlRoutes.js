@@ -66,8 +66,6 @@ module.exports = function(app) {
   });
 
   app.get("/editpost/:id", function(req, res) {
-    // if statement needed for navbar login/logut display
-    if (req.session.user) {
       db.Post.findOne({
         where: {
           id: req.params.id
@@ -77,8 +75,6 @@ module.exports = function(app) {
           body: dbpost
         });
       });
-      return;
-    }
   });
 
   app.get("/register", function(req, res) {
@@ -86,11 +82,7 @@ module.exports = function(app) {
   });
 
   app.get("/newpost", function(req, res) {
-    // if statement needed for navbar login/logut display
-    if (req.session.user) {
       return res.render("newpost");
-    } else {
-    }
   });
 
   // Render 404 page for any unmatched routes

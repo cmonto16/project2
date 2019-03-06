@@ -42,7 +42,7 @@
         <div class="nav-wrapper">
           <a href="/" class="brand-logo hide-on-med-and-down">Kids these days</a>
           <ul id="nav-mobile" class="right">
-            {{#if user}}
+            {{#if user.id}}
             <li><a href="/api/create_post">Create Activity</a></li>
             <li><a href="/api/sessions_logout">Logout</a></li>
             {{else}}

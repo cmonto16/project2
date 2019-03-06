@@ -3,15 +3,45 @@ var db = require("../models");
 module.exports = function(app) {
   app.get("/", function(req, res) {
     if (!req.session.user) {
-      return res.render("posts");
+      db.Post.findAll({
+        attributes: ["id", "title","body", "UserID"],
+        include: [
+          {
+            model: db.Category,
+            as: "category",
+            required: false,
+            attributes: ["id", "category"],
+            through: { attributes: [] }
+          }
+        ]
+      }).then(function(dbPost) {
+        res.render("posts",{
+          post: dbPost
+        });
+      });
+      return;
     }
     db.User.findOne({
       where: {
         id: req.session.user.id
       }
     }).then(function(dbUser) {
-      res.render("posts", {
-        user: dbUser
+      db.Post.findAll({
+        attributes: ["id", "title","body", "UserID"],
+        include: [
+          {
+            model: db.Category,
+            as: "category",
+            required: false,
+            attributes: ["id", "category"],
+            through: { attributes: [] }
+          }
+        ]
+      }).then(function(dbPost) {
+        res.render("posts",{
+          user: dbUser,
+          post: dbPost
+        });
       });
     });
   });

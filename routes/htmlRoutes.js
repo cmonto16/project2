@@ -46,6 +46,18 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/posts/:id", function (req, res) {
+    db.Post.findOne({
+      where: {
+        id: req.params.id
+      },
+    }).then(function (dbpost) {
+      res.render("post",{
+        body: dbpost
+      });
+    });
+  });
+
   app.get("/register", function(req, res) {
     res.render("register");
   });

@@ -64,7 +64,7 @@
   $("#submitbutton").click(function () {
     var rawtitle = $("#title").val();
     console.log(title)
-    var rawhtml = quill.container.firstChild.innerHTML;
+    var rawhtml = $("#editor-container").html()
 
     var postdata = {
       title: rawtitle,

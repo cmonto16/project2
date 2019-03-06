@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "auth0-js": "^9.10.0",
+    "cheerio": "^1.0.0-rc.2",
     "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
     "eslit": "^6.0.0",

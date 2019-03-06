@@ -29,4 +29,15 @@ $(function() {
   });
 });
 
-$(".edit")
+$.get( "/api/posts", function( data ) {
+    console.log(data)
+    for (var i = 0; i < data.length; i++) {
+        
+        var el = $( '<div></div>' );
+        rawhtml = el.html(data[i].body);
+        curimage = rawhtml.find('img:first')
+        raw = curimage.attr('src')
+        console.log(raw)
+        $("#" +"img" + data[i].id).attr("src", raw);
+    }
+  });

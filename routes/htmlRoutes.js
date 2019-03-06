@@ -1,5 +1,5 @@
 var db = require("../models");
-
+var cheerio = require("cheerio")
 module.exports = function(app) {
   app.get("/", function(req, res) {
     if (!req.session.user) {
@@ -53,6 +53,19 @@ module.exports = function(app) {
       },
     }).then(function (dbpost) {
       res.render("post",{
+        body: dbpost
+      });
+    });
+  });
+
+
+  app.get("/editpost/:id", function (req, res) {
+    db.Post.findOne({
+      where: {
+        id: req.params.id
+      },
+    }).then(function (dbpost) {
+      res.render("editpost",{
         body: dbpost
       });
     });

@@ -29,15 +29,25 @@ $(function() {
   });
 });
 
-$.get( "/api/posts", function( data ) {
-    console.log(data)
-    for (var i = 0; i < data.length; i++) {
-        
-        var el = $( '<div></div>' );
-        rawhtml = el.html(data[i].body);
-        curimage = rawhtml.find('img:first')
-        raw = curimage.attr('src')
-        console.log(raw)
-        $("#" +"img" + data[i].id).attr("src", raw);
+$.get("/api/posts", function(data) {
+  console.log(data);
+  for (var i = 0; i < data.length; i++) {
+    var el = $("<div></div>");
+    rawhtml = el.html(data[i].body);
+    curimage = rawhtml.find("img:first");
+    raw = curimage.attr("src");
+    console.log(raw);
+    $("#" + "img" + data[i].id).attr("src", raw);
+  }
+});
+
+if ($("#user-id").attr("value") === undefined) {
+  $(".edit-link").hide();
+} else {
+  $(".edit-link").hide();
+  for (i = 1; i < 20; i++) {
+    if($("#edit"+i).attr('value') === $("#user-id").attr("value")){
+      $("#edit"+i).show();
     }
-  });
+  }
+}

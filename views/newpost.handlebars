@@ -1,4 +1,10 @@
 <br>
+
+<div class="input-field col s6">
+  <input id="title" type="text" class="validate">
+  <label for="title">Post Title</label>
+</div>
+
 <div id="toolbar-container">
   <span class="ql-formats">
     <select class="ql-font"></select>
@@ -58,15 +64,24 @@
   $("#submitbutton").click(function () {
     var rawhtml = quill.container.firstChild.innerHTML;
 
+  $("#submitbutton").click(function () {
+    var rawtitle = $("#title").val();
+    console.log(title)
+    var rawhtml = quill.container.firstChild.innerHTML;
+
     var postdata = {
-      title: "testing123",
-      body: rawhtml,
-      UserId: 1
+      title: rawtitle,
+      body: rawhtml
     }
+
+    console.log(postdata)
 
     $.post("api/posts", postdata).then()
 
     console.log(quill.container.firstChild.innerHTML);
+
+  });
+
 
   });
   
@@ -81,6 +96,7 @@
     theme: 'snow'
   });
 
+quill.root.innerHTML = post
 
 
 </script>

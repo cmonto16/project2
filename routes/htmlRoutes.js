@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     if (!req.session.user) {
       db.Post.findAll({
-        attributes: ["id", "title","body", "UserID"],
+        attributes: ["id", "title","body", "UserId"],
         include: [
           {
             model: db.Category,
@@ -27,7 +27,7 @@ module.exports = function(app) {
       }
     }).then(function(dbUser) {
       db.Post.findAll({
-        attributes: ["id", "title","body", "UserID"],
+        attributes: ["id", "title","body", "UserId"],
         include: [
           {
             model: db.Category,
@@ -42,6 +42,18 @@ module.exports = function(app) {
           user: dbUser,
           post: dbPost
         });
+      });
+    });
+  });
+
+  app.get("/posts/:id", function (req, res) {
+    db.Post.findOne({
+      where: {
+        id: req.params.id
+      },
+    }).then(function (dbpost) {
+      res.render("post",{
+        body: dbpost
       });
     });
   });

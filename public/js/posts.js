@@ -29,14 +29,4 @@ $(function() {
   });
 });
 
-$(".edit-link").on("click", function(event) {
-  var id = { id: this.id };
-  $.ajax("/api/edit_post", {
-    type: "POST",
-    data: JSON.stringify(id),
-    contentType: "application/json"
-  })
-    .fail(function(jqXHR, textStatus) {
-      alert("error: " + textStatus);
-    });
-});
+$(".edit")

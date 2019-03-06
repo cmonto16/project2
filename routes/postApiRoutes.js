@@ -64,8 +64,12 @@ module.exports = function (app) {
 
   // Create new Post
   app.post("/api/posts", function (req, res) {
-    console.log(req.body);
-    db.Post.create(req.body).then(function (newPost) {
+    bodypost = {
+      title: req.body.title,
+      body: req.body.body,
+      UserId: req.session.user.id
+    }
+    db.Post.create(bodypost).then(function (newPost) {
       res.json(newPost);
     });
   });
@@ -97,17 +101,4 @@ module.exports = function (app) {
     res.redirect("/newpost")
   })
 
-  // 
-  app.post("/api/edit_post", function(req, res){
-    var id = req.body.id
-    db.Post.findOne({
-      where: {
-        id: id
-      }
-    }).then(function(postData){
-      res.render("newpost",{
-        data: postData
-      })
-    })
-  })
 };

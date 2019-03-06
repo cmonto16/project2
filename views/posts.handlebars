@@ -1,5 +1,5 @@
 {{#if user}}
-<h4>Hello {{user.firstname}} {{user.lastname}}, Checkout or create some activities and get out there!!!</h4>
+<div id="user-id" value="{{user.id}}"><h4>Hello {{user.firstname}} {{user.lastname}}, Checkout or create some activities and get out there!!!</h4></div>
 {{/if}}
 <br>
 <br>
@@ -14,11 +14,11 @@
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">{{this.title}}<i
               class="material-icons right">more_vert</i></span>
-          {{#if user}}
-          <a class="edit-link" href="/editpost/{{this.id}}">
-            <p>edit</p>
-          </a>
-          {{/if}}
+          <div id="edit{{this.id}}"class="edit-link" value="{{this.UserId}}">
+            <a href="/editpost/{{this.id}}">
+              <p>edit</p>
+            </a>
+          </div>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4">{{this.title}}<i

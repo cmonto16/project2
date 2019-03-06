@@ -5,7 +5,7 @@ module.exports = function (app) {
   //get all posts
   app.get("/api/posts", function (req, res) {
     db.Post.findAll({
-      attributes: ['id', 'title', 'UserID'],
+      attributes: ['id', 'title', 'body','UserID'],
       include: [
         {
           model: db.Category,

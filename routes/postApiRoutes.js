@@ -64,8 +64,12 @@ module.exports = function (app) {
 
   // Create new Post
   app.post("/api/posts", function (req, res) {
-    console.log(req.body);
-    db.Post.create(req.body).then(function (newPost) {
+    bodypost = {
+      title: req.body.title,
+      body: req.body.body,
+      UserId: req.session.user.id
+    }
+    db.Post.create(bodypost).then(function (newPost) {
       res.json(newPost);
     });
   });

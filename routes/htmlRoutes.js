@@ -1,10 +1,10 @@
 var db = require("../models");
-var cheerio = require("cheerio")
+var cheerio = require("cheerio");
 module.exports = function(app) {
   app.get("/", function(req, res) {
     if (!req.session.user) {
       db.Post.findAll({
-        attributes: ["id", "title","body", "UserId"],
+        attributes: ["id", "title", "body", "UserId"],
         include: [
           {
             model: db.Category,
@@ -15,7 +15,7 @@ module.exports = function(app) {
           }
         ]
       }).then(function(dbPost) {
-        res.render("posts",{
+        res.render("posts", {
           post: dbPost
         });
       });
@@ -27,7 +27,7 @@ module.exports = function(app) {
       }
     }).then(function(dbUser) {
       db.Post.findAll({
-        attributes: ["id", "title","body", "UserId"],
+        attributes: ["id", "title", "body", "UserId"],
         include: [
           {
             model: db.Category,
@@ -38,7 +38,14 @@ module.exports = function(app) {
           }
         ]
       }).then(function(dbPost) {
-        res.render("posts",{
+        dbPost.forEach(function(post) {
+          if (req.session.user.id === post.UserId) {
+            post.dataValues.belongs = true;
+          } else {
+            post.dataValues.belongs = false;
+          }
+        });
+        res.render("posts", {
           user: dbUser,
           post: dbPost
         });
@@ -46,29 +53,32 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/posts/:id", function (req, res) {
+  app.get("/posts/:id", function(req, res) {
     db.Post.findOne({
       where: {
         id: req.params.id
-      },
-    }).then(function (dbpost) {
-      res.render("post",{
+      }
+    }).then(function(dbpost) {
+      res.render("post", {
         body: dbpost
       });
     });
   });
 
-
-  app.get("/editpost/:id", function (req, res) {
-    db.Post.findOne({
-      where: {
-        id: req.params.id
-      },
-    }).then(function (dbpost) {
-      res.render("editpost",{
-        body: dbpost
+  app.get("/editpost/:id", function(req, res) {
+    // if statement needed for navbar login/logut display
+    if (req.session.user) {
+      db.Post.findOne({
+        where: {
+          id: req.params.id
+        }
+      }).then(function(dbpost) {
+        res.render("editpost", {
+          body: dbpost
+        });
       });
-    });
+      return;
+    }
   });
 
   app.get("/register", function(req, res) {
@@ -76,7 +86,11 @@ module.exports = function(app) {
   });
 
   app.get("/newpost", function(req, res) {
-    res.render("newpost");
+    // if statement needed for navbar login/logut display
+    if (req.session.user) {
+      return res.render("newpost");
+    } else {
+    }
   });
 
   // Render 404 page for any unmatched routes

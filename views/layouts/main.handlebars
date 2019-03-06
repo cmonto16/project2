@@ -40,15 +40,14 @@
     <nav>
       <div class="container wider-container">
         <div class="nav-wrapper">
-          <a href="/" class="brand-logo">Kids these days</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <a href="/" class="brand-logo hide-on-med-and-down">Kids these days</a>
+          <ul id="nav-mobile" class="right">
             {{#if user}}
             <li><a href="/api/create_post">Create Activity</a></li>
             <li><a href="/api/sessions_logout">Logout</a></li>
             {{else}}
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Login</a></li>
             {{/if}}
-            </li>
           </ul>
         </div>
       </div>
@@ -71,6 +70,7 @@
     </footer>
   </div>
   <script type="text/javascript" src="/materialize/js/materialize.js"></script>
+  <script src="/js/index.js"></script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     if (!req.session.user) {
       db.Post.findAll({
-        attributes: ["id", "title", "body", "UserID"],
+        attributes: ["id", "title","body", "UserId"],
         include: [
           {
             model: db.Category,
@@ -27,7 +27,7 @@ module.exports = function(app) {
       }
     }).then(function(dbUser) {
       db.Post.findAll({
-        attributes: ["id", "title","body", "UserID"],
+        attributes: ["id", "title","body", "UserId"],
         include: [
           {
             model: db.Category,

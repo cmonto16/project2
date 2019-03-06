@@ -96,11 +96,9 @@ module.exports = function (app) {
     });
   });
 
-
    // redierect for users to create post
    app.get("/api/create_post", function(req, res){
-     
     res.redirect("/newpost")
   })
- 
+
 };

@@ -41,6 +41,14 @@ require("./routes/postApiRoutes")(app);
 require("./routes/categoryApiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
+app.use(function(req, res, next) {
+  if (!req.session.user) {
+    console.log("User is not logged in.");
+    return res.redirect('/');
+  }
+  next();
+});
+
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true

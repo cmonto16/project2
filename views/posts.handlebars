@@ -1,23 +1,31 @@
 {{#if user}}
-<div id="user-id" value="{{user.id}}"><h4>Hello {{user.firstname}} {{user.lastname}}, Checkout or create some activities and get out there!!!</h4></div>
+<div id="user-id" value="{{user.id}}">
+  <h4>Hello {{user.firstname}} {{user.lastname}}, Checkout or create some activities and get out there!!!</h4>
+</div>
 {{/if}}
 <br>
 <br>
 <div id="home">
   <div class="row">
     {{#each post}}
-    <div class="col s4">
+    <div class="col l4 m6 s12">
       <div class="card medium">
         <div class="card-image waves-effect waves-block waves-light">
-          <a href="/posts/{{this.id}}"><img id="img{{this.id}}" class="activator" src="assets/images/default.png"></a>
+          <a href="/posts/{{this.id}}"><img id="img{{this.id}}" class="activator" src=""></a>
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">{{this.title}}</span>
-          <div id="edit{{this.id}}"class="edit-link" value="{{this.UserId}}">
-            <a href="/editpost/{{this.id}}">
-              <p>edit</p>
-            </a>
-          </div>
+          <span class="card-title activator grey-text text-darken-4">{{this.title}}<i
+              class="material-icons right">more_vert</i></span>
+          {{#if belongs}}
+          <a href="/editpost/{{this.id}}">
+            <p>edit</p>
+          </a>
+          {{/if}}
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{this.title}}<i
+              class="material-icons right">close</i></span>
+          <p>{{{this.body}}}</p>
         </div>
       </div>
     </div>

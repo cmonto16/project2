@@ -1,7 +1,7 @@
 <br>
 
 <div class="input-field col s6">
-  <input id="title" type="text" class="validate">
+  <input id="title" type="text" class="validate" value="{{this.body.title}}">
   <label for="title">Post Title</label>
 </div>
 
@@ -64,8 +64,7 @@
 
   $("#submitbutton").click(function () {
     var rawtitle = $("#title").val();
-    console.log(title)
-    var rawhtml = quill.container.firstChild.innerHTML;
+    var rawhtml = $("#editor-container").html()
 
     var postdata = {
       title: rawtitle,
@@ -74,9 +73,19 @@
 
     console.log(postdata)
 
-    $.post("api/posts", postdata).then()
+ //   $.put("/api/posts/" + {{ this.body.id }}, postdata).then()
+  var fullurl = "/api/posts/" + {{ this.body.id }}
 
-    console.log(quill.container.firstChild.innerHTML);
+  $.ajax({
+    url: fullurl,
+    type: 'PUT',
+    data: postdata,
+    success: function (data) {
+      window.location.replace("/");
+    }
+  });
+
+
 
   });
 
@@ -92,7 +101,7 @@
     theme: 'snow'
   });
 
-quill.root.innerHTML = post
+  quill.root.innerHTML = post
 
 
 </script>

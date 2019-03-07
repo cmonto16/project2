@@ -60,6 +60,7 @@ module.exports = function(app) {
       }
     }).then(function(dbpost) {
       res.render("post", {
+        user: req.session,
         body: dbpost
       });
     });
@@ -72,6 +73,7 @@ module.exports = function(app) {
         }
       }).then(function(dbpost) {
         res.render("editpost", {
+          user: req.session,
           body: dbpost
         });
       });
@@ -82,7 +84,14 @@ module.exports = function(app) {
   });
 
   app.get("/newpost", function(req, res) {
-      return res.render("newpost");
+    if (req.session.user) {
+      return res.render("newpost", {
+        user: req.session
+      });
+    }
+    else {
+      return res.redirect('/')
+    }
   });
 
   // Render 404 page for any unmatched routes

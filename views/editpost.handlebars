@@ -96,7 +96,6 @@
       title: rawtitle,
       body: rawhtml
     }
-    console.log(postdata)
     var fullurl = "/api/posts/" + postId
 
     $.ajax({
@@ -117,5 +116,4 @@
     placeholder: 'Compose an epic...',
     theme: 'snow'
   });
-  quill.root.innerHTML = post
 </script>

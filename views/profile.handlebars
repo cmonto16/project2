@@ -1,0 +1,52 @@
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <h4>Save Successful</h4>
+        <p>Congratulations, you just updated your profile. YAY!</p>
+    </div>
+    <div class="modal-footer">
+        <a href="/" class="modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
+<div id="failedModal" class="modal">
+    <div class="modal-content">
+        <h4>Update failed</h4>
+        <p>Profile update failed. Try again later.</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
+<div class="row">
+    <div class="input-field col s6">
+        <input id="new_firstname" type="text" class="validate" value="{{user.firstname}}">
+        <label for="new_firstname">First Name</label>
+    </div>
+    <div class="input-field col s6">
+        <input id="new_lastname" type="text" class="validate" value="{{user.lastname}}">
+        <label for="new_lastname">Last Name</label>
+    </div>
+</div>
+<div class="row">
+    <div class="input-field col s12">
+        <input id="new_username" type="text" class="validate" value="{{user.username}}">
+        <label for="new_username">Username</label>
+    </div>
+</div>
+<div class="row">
+    <div class="input-field col s12">
+        <input id="new_password" type="password" class="validate">
+        <label for="new_password">Password</label>
+    </div>
+</div>
+<div class="row">
+    <div class="input-field col s12">
+        <input id="new_email" type="email" class="validate" value="{{user.email}}">
+        <label for="new_email">Email</label>
+    </div>
+</div>
+
+<button id="new-button" class="btn waves-effect waves-light">Submit</button>
+<a class="waves-effect waves-light btn" href="/">Cancel</a>
+<br>
+<br>
+<script src="/js/profile.js"></script>

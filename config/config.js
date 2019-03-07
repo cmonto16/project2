@@ -16,7 +16,10 @@ module.exports = {
     "logging": false
   },
   "production": {
-    "use_env_variable": "JAWSDB_URL",
+    "username": "kidsthesedays",
+    "password": "password",
+    "database": "kidsthesedays",
+    "host": "199.36.111.25",
     "dialect": "mysql"
   }
 }

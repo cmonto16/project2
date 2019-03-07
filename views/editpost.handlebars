@@ -1,7 +1,7 @@
 <br>
-
+<div id="post-id" value="{{body.id}}"></div>
 <div class="input-field col s6">
-  <input id="title" type="text" class="validate">
+  <input id="title" type="text" class="validate" value="{{body.title}}">
   <label for="title">Post Title</label>
 </div>
 
@@ -47,7 +47,8 @@
 
 
 <br>
-<a id="submitbutton" class="waves-effect waves-light btn">Submit Post</a>
+<a id="submitbutton" class="waves-effect waves-light btn">Update Post</a>
+<a id="deletebutton" class="waves-effect waves-light btn">Delete Post</a>
 
 <br>
 <br>
@@ -62,10 +63,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
+  $("#deletebutton").click(function () {
+    console.log("delete request sent")
+    var postId = $("#post-id").attr("value")
+    $.ajax({
+      url: "/api/posts/" + postId,
+      type: "DELETE"
+    })
+      .done(function () {
+        location.href = "/";
+      })
+  })
+
   $("#submitbutton").click(function () {
     var rawtitle = $("#title").val();
     console.log(title)
     var rawhtml = quill.container.firstChild.innerHTML;
+
+    var postId = $("#post-id").attr("value")
 
     var postdata = {
       title: rawtitle,
@@ -74,7 +89,14 @@
 
     console.log(postdata)
 
-    $.post("api/posts", postdata).then()
+    $.ajax({
+      url: "/api/posts/" + postId,
+      type: "PUT",
+      data: postdata
+    })
+      .done(function () {
+        //location.href = "/";
+      })
 
     console.log(quill.container.firstChild.innerHTML);
 
@@ -92,7 +114,9 @@
     theme: 'snow'
   });
 
-quill.root.innerHTML = post
+  quill.root.innerHTML = post
+
+
 
 
 </script>

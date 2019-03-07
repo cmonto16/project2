@@ -76,9 +76,13 @@
 
     console.log(postdata)
 
-    $.post("api/posts", postdata).then()
+    $.post("api/posts", postdata).done(function() {
+        location.href = "/";
+      })
 
     console.log(quill.container.firstChild.innerHTML);
+
+
 
   });
 

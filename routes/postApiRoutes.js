@@ -1,104 +1,107 @@
 var db = require("../models");
 
-module.exports = function (app) {
-
+module.exports = function(app) {
   //get all posts
-  app.get("/api/posts", function (req, res) {
+  app.get("/api/posts", function(req, res) {
     db.Post.findAll({
-      attributes: ['id', 'title', 'body','UserID'],
+      attributes: ["id", "title", "body", "UserID"],
       include: [
         {
           model: db.Category,
-          as: 'category',
+          as: "category",
           required: false,
-          attributes: ['id', 'category'],
+          attributes: ["id", "category"],
           through: { attributes: [] }
         }
       ]
-    }).then(function (dbPost) {
+    }).then(function(dbPost) {
       res.json(dbPost);
     });
   });
 
   //get post by id
-  app.get("/api/posts/:id", function (req, res) {
+  app.get("/api/posts/:id", function(req, res) {
     db.Post.findOne({
       where: {
         id: req.params.id
       },
-      include: [{
-        model: db.User,
-        attributes: ['id']
-      },
-      {
-        model: db.Category,
-        as: 'category',
-        required: false,
-        attributes: ['id', 'category'],
-        through: { attributes: [] }
-      }
+      include: [
+        {
+          model: db.User,
+          attributes: ["id"]
+        },
+        {
+          model: db.Category,
+          as: "category",
+          required: false,
+          attributes: ["id", "category"],
+          through: { attributes: [] }
+        }
       ]
-    }).then(function (dbPost) {
+    }).then(function(dbPost) {
       res.json(dbPost);
     });
   });
 
   //update post by id
-  app.put("/api/posts/:id", function (req, res) {
-    db.Post.update(req.body, {
-      where: {
-        id: req.params.id
-      },
-    }).then(function (dbPost) {
-      res.json(dbPost);
+  app.put("/api/posts/:id", function(req, res) {
+    
+      (bodypost = {
+        title: req.body.title,
+        body: req.body.body
+      });
+      console.log(bodypost)
+    db.Post.update(bodypost, { where: { id: req.params.id } }).then(function(
+      updatePost
+    ) {
+      res.json(updatePost);
     });
   });
 
-
   // Delete post by id
-  app.delete("/api/posts/:id", function (req, res) {
-    db.Post.destroy({ where: { id: req.params.id } }).then(function (data) {
+  app.delete("/api/posts/:id", function(req, res) {
+    console.log(req.params.id)
+    db.Post.destroy({ where: { id: req.params.id } }).then(function(data) {
       res.json(data);
     });
   });
 
   // Create new Post
-  app.post("/api/posts", function (req, res) {
+  app.post("/api/posts", function(req, res) {
     bodypost = {
       title: req.body.title,
       body: req.body.body,
       UserId: req.session.user.id
-    }
-    db.Post.create(bodypost).then(function (newPost) {
+    };
+    db.Post.create(bodypost).then(function(newPost) {
       res.json(newPost);
     });
   });
 
   //add post category by id
-  app.post("/api/posts/:id/categories/:catid", function (req, res) {
+  app.post("/api/posts/:id/categories/:catid", function(req, res) {
     db.CategoryPost.create({
       postId: req.params.id,
-      categoryId: req.params.catid,
-    }).then(function (dbPost) {
+      categoryId: req.params.catid
+    }).then(function(dbPost) {
       res.json(dbPost);
     });
   });
 
   //remove post category by id
-  app.delete("/api/posts/:id/categories/:catid", function (req, res) {
+  app.delete("/api/posts/:id/categories/:catid", function(req, res) {
     db.CategoryPost.destroy({
       where: {
         postId: req.params.id,
-        categoryId: req.params.catid,
+        categoryId: req.params.catid
       }
-    }).then(function (dbPost) {
+    }).then(function(dbPost) {
       res.json(dbPost);
     });
   });
 
-   // redierect for users to create post
-   app.get("/api/create_post", function(req, res){
-    res.redirect("/newpost")
-  })
-
+  // redierect for users to create post
+  app.get("/api/create_post", function(req, res) {
+    res.redirect("/newpost");
+  });
 };

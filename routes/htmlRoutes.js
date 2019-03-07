@@ -53,18 +53,6 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/posts/:id", function(req, res) {
-    db.Post.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbpost) {
-      res.render("post", {
-        body: dbpost
-      });
-    });
-  });
-
   app.get("/editpost/:id", function(req, res) {
       db.Post.findOne({
         where: {

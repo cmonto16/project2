@@ -20,6 +20,7 @@ module.exports = {
     "password": "password",
     "database": "kidsthesedays",
     "host": "199.36.111.25",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": false
   }
 }

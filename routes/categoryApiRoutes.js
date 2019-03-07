@@ -54,7 +54,6 @@ module.exports = function (app) {
 
     // Create new Category
     app.post("/api/categories", function (req, res) {
-        console.log(req.body);
         db.Post.create(req.body).then(function (newPost) {
             res.json(newPost);
         });

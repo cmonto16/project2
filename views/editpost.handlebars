@@ -1,7 +1,7 @@
 <br>
 <div id="post-id" value="{{body.id}}"></div>
 <div class="input-field col s6">
-  <input id="title" type="text" class="validate" value="{{body.title}}">
+  <input id="title" type="text" class="validate" value="{{this.body.title}}">
   <label for="title">Post Title</label>
 </div>
 
@@ -77,8 +77,7 @@
 
   $("#submitbutton").click(function () {
     var rawtitle = $("#title").val();
-    console.log(title)
-    var rawhtml = quill.container.firstChild.innerHTML;
+    var rawhtml = $("#editor-container").html()
 
     var postId = $("#post-id").attr("value")
 
@@ -89,16 +88,19 @@
 
     console.log(postdata)
 
-    $.ajax({
-      url: "/api/posts/" + postId,
-      type: "PUT",
-      data: postdata
-    })
-      .done(function () {
-        //location.href = "/";
-      })
+ //   $.put("/api/posts/" + {{ this.body.id }}, postdata).then()
+  var fullurl = "/api/posts/" + {{ this.body.id }}
 
-    console.log(quill.container.firstChild.innerHTML);
+  $.ajax({
+    url: fullurl,
+    type: 'PUT',
+    data: postdata,
+    success: function (data) {
+      window.location.replace("/");
+    }
+  });
+
+
 
   });
 
@@ -115,8 +117,6 @@
   });
 
   quill.root.innerHTML = post
-
-
 
 
 </script>

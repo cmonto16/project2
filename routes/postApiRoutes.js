@@ -56,7 +56,7 @@ module.exports = function(app) {
 
   // Delete post by id
   app.delete("/api/posts/:id", function(req, res) {
-    console.log(req.params.id);
+
     db.Post.destroy({ where: { id: req.params.id } }).then(function(data) {
       res.json(data);
     });

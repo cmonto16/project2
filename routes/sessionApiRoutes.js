@@ -38,7 +38,7 @@ module.exports = function(app) {
   });
 
   app.post("/api/create-account", function (req, res) {
-    console.log(req.body);
+
     db.User.create(req.body).then(function (newUser) {
       res.json(newUser);
     });

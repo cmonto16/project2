@@ -1,5 +1,5 @@
 <br>
-
+<div id="post-id" value="{{body.id}}"></div>
 <div class="input-field col s6">
   <input id="title" type="text" class="validate" value="{{this.body.title}}">
   <label for="title">Post Title</label>
@@ -47,7 +47,8 @@
 
 
 <br>
-<a id="submitbutton" class="waves-effect waves-light btn">Submit Post</a>
+<a id="submitbutton" class="waves-effect waves-light btn">Update Post</a>
+<a id="deletebutton" class="waves-effect waves-light btn">Delete Post</a>
 
 <br>
 <br>
@@ -62,9 +63,23 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
+  $("#deletebutton").click(function () {
+    console.log("delete request sent")
+    var postId = $("#post-id").attr("value")
+    $.ajax({
+      url: "/api/posts/" + postId,
+      type: "DELETE"
+    })
+      .done(function () {
+        location.href = "/";
+      })
+  })
+
   $("#submitbutton").click(function () {
     var rawtitle = $("#title").val();
     var rawhtml = $("#editor-container").html()
+
+    var postId = $("#post-id").attr("value")
 
     var postdata = {
       title: rawtitle,

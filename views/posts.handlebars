@@ -14,7 +14,8 @@
           <a href="/posts/{{this.id}}"><img id="img{{this.id}}" class="activator" src=""></a>
         </div>
         <div class="card-content">
-          <span class="card-title activator deep-orange-text text-accent-3">{{this.title}}</span>
+           <span class="card-title activator deep-orange-text text-accent-3">{{this.title}}
+            <i class="material-icons right black-text">more_vert</i></span>
           {{#if belongs}}
           <a href="/editpost/{{this.id}}">
             <p class="black-text">edit</p>

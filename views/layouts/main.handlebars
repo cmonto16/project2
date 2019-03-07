@@ -19,30 +19,32 @@
 </head>
 
 <body>
-  <div class="container-fluid">
+  <div class="container-fluid white">
     <div id="dropdown1" class="dropdown-content">
-      <div class="row">
+      <div class="row" tabindex="a">
         <div class="input-field col s11">
-          <i class="material-icons prefix black-text">account_circle</i>
-          <input id="username" type="text" class="validate">
+          <i class="material-icons prefix deep-orange-text text-accent-3">account_circle</i>
+          <input id="username" type="text">
           <label for="username">Username</label>
         </div>
         <div class="input-field col s11">
-          <i class="material-icons prefix black-text">security</i>
+          <i class="material-icons prefix deep-orange-text text-accent-3">security</i>
           <input id="password" type="password" class="validate">
           <label for="password">Password</label>
         </div>
         <div class="col s11 black-text valign-wrapper">
-          <a class="waves-effect waves-light btn right red lighten-1" id="login-button">Login</a>
+          <a class="waves-effect waves-light btn" id="login-button">Login</a>
           <span class="right top">OR</span>
-          <a class="waves-effect waves-light btn right red lighten-1" href="/register">Register</a>
+          <a class="waves-effect waves-light btn" href="/register">Register</a>
         </div>
       </div>
     </div>
-    <nav class="red lighten-1">
+    <nav class="grey darken-4">
       <div class="container wider-container">
         <div class="nav-wrapper">
-          <a href="/" class="brand-logo hide-on-med-and-down">Kids these days</a>
+                   <a href="/" class="brand-logo hide-on-med-and-down">	
+            <i class="material-icons deep-orange-text text-accent-3">play_circle_outline</i>Kids these days	
+          </a>
           <ul id="nav-mobile" class="right">
             {{#if user.id}}
             <li><a href="/api/create_post">Create Activity</a></li>
@@ -59,19 +61,29 @@
       <br>
       {{{body}}}
     </div>
-    <footer class="page-footer red lighten-1">
+    <footer class="page-footer grey darken-4">
       <div class="container wider-container">
         <div class="row">
-          <div class="col s12">
+          <div class="col s9">
+          <h5 class="white-text">About</h5>
+            <p class="white-text">Kids these days is an app that lets other parents post ideas of what to do and where
+              to go, to get kids away from the screen. Please sign up or login to create and manage your posts</p>
+          </div>
+          <div class="col s3">
             <ul>
-              <li><span class="right">Checkout our <a class="grey-text text-lighten-3"
-                    href="https://github.com/kids-these-days-uofu/project2">Github</a></span></li>
+              <li>
+                <span class="right">Check out our
+                  <a class="grey-text text-lighten-3" href="https://github.com/kids-these-days-uofu/project2">
+                    Github <i class="fa fa-github"></i>
+                  </a>
+                </span>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </footer>
-  </div>
+
   <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 </body>
 

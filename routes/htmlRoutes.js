@@ -83,6 +83,17 @@ module.exports = function(app) {
     res.render("register");
   });
 
+  app.get("/profile", function(req, res) {
+    if (req.session.user) {
+      return res.render("profile", {
+        user: req.session
+      });
+    }
+    else {
+      return res.redirect('/')
+    }
+  });
+
   app.get("/newpost", function(req, res) {
     if (req.session.user) {
       return res.render("newpost", {

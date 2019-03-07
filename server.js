@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Routes
-require("./routes/sessionApiroutes")(app);
+require("./routes/sessionApiRoutes")(app);
 require("./routes/postApiRoutes")(app);
 require("./routes/categoryApiRoutes")(app);
 require("./routes/htmlRoutes")(app);

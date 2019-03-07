@@ -58,7 +58,6 @@
   $("#submitbutton").click(function () {
 
     var rawtitle = $("#title").val();
-    console.log(title)
     var rawhtml = $("#editor-container").html()
 
     var postdata = {
@@ -66,18 +65,12 @@
       body: rawhtml
     }
 
-    console.log(postdata)
-
     $.post("api/posts", postdata, function() {
       window.location.replace("/");
     })
 
-    console.log(quill.container.firstChild.innerHTML);
-
-
   });
   
-
   // Initialize editor with custom theme and modules
   var quill = new Quill('#editor-container', {
     modules: {
@@ -88,7 +81,6 @@
     theme: 'snow'
   });
 
-quill.root.innerHTML = post
 
 
 </script>

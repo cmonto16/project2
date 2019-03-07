@@ -45,22 +45,18 @@ module.exports = function(app) {
 
   //update post by id
   app.put("/api/posts/:id", function(req, res) {
-    
-      (bodypost = {
-        title: req.body.title,
-        body: req.body.body
-      });
-      console.log(bodypost)
-    db.Post.update(bodypost, { where: { id: req.params.id } }).then(function(
-      updatePost
-    ) {
-      res.json(updatePost);
+    db.Post.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbPost) {
+      res.json(dbPost);
     });
   });
 
   // Delete post by id
   app.delete("/api/posts/:id", function(req, res) {
-    console.log(req.params.id)
+    console.log(req.params.id);
     db.Post.destroy({ where: { id: req.params.id } }).then(function(data) {
       res.json(data);
     });
